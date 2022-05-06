@@ -21,6 +21,12 @@ func CreateUser(c *gin.Context) {
 			"erro": err.Error(),
 		})
 	}
+	if erro := user.Prepare("create"); erro != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"erro": erro.Error(),
+		})
+		return
+	}
 	database.DB.Create(&user)
 	c.JSON(http.StatusOK, gin.H{
 		"usuário": "Criado com Sucesso!"})
@@ -36,7 +42,9 @@ func DeleteUser(c *gin.Context) {
 		return
 	}
 	database.DB.Delete(&user, id)
-	c.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, gin.H{
+		"status": "Usuário deletado com sucesso!",
+	})
 }
 
 func ReturnUser(c *gin.Context) {

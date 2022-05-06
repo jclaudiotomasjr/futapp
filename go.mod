@@ -5,6 +5,7 @@ go 1.18
 require gorm.io/driver/postgres v1.3.5
 
 require (
+	github.com/badoux/checkmail v1.2.1 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.7.7 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
